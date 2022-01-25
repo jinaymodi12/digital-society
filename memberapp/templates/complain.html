@@ -1,0 +1,88 @@
+{% extends 'headers.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {% block title %}
+        <title>Complain</title>
+        {% endblock %}
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Cleaning Company Website Template" name="keywords">
+        <meta content="Cleaning Company Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="{% static 'img/favicon.ico' }" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            
+            <!-- Page Header Start -->
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>COMPLAIN HERE</h2>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- Page Header End -->
+
+
+            <!-- Contact Start -->
+            <div class="contact">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Find Your Answer / Send Message</h2>
+                    </div>
+                    {% if msg %}
+                  <p style="color: red;margin: 5px; padding: 5px ;">{{msg}}</p>
+                  {% endif %}
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                
+                                      
+                                <!-- <p style="color: red;margin: 5px; padding: 5px ;">{{v}}</p> -->
+                                <form role="form" action="{% url 'complain' %}" method="POST" >
+                                    {% csrf_token %}
+                                    <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="text" name="name" 
+                                              class="form-control" placeholder="Your Name" required="required" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" name="flat" class="form-control" placeholder="FLAT NO" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mobile"class="form-control" placeholder="MOBILE Number" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="description"class="form-control" placeholder="DESCRIPTION" required="required" />
+                                    </div>
+                                   
+                                    <div><button class="btn" type="submit">Send Message</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

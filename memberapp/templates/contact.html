@@ -1,0 +1,116 @@
+{% extends 'headers.html' %} 
+{% load static %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    {% block title %}
+    <title>CleanMe - Cleaning Company Website Template</title>
+    {% endblock %}
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Cleaning Company Website Template" name="keywords" />
+    <meta content="Cleaning Company Website Template" name="description" />
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' }" rel="icon" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Libraries -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'lib/lightbox/css/lightbox.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Page Header Start -->
+      <div class="page-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2>Contact Us</h2>
+            </div>
+            <div class="col-12">
+              <a href="">Home</a>
+              <a href="">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page Header End -->
+
+      <!-- Contact Start -->
+      <div class="contact">
+        <div class="container">
+          <div class="section-header">
+            <p>EMERGENCY CONTACT</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>NAME</th>
+                    <th>OCCUPATIONS <select name="search" id="" >
+                        <option value="carpenter">carpenter</option>
+                        <option value="plumber">plumber</option>
+                        <option value="mechanic">mechanic</option>
+                        <input type="submit" name="" value="search" id="">
+                        
+
+                    </select> </th>
+                    
+                    <th>MOBILE</th>
+                   
+                  </tr>
+                  
+                  </div>
+                </thead>
+                <tbody>
+                    {% for one in v %}
+                    <tr>
+                        <td>{{one.name}}</td>
+                        <td>{{one.occupation}}</td>
+                        <td>{{one.mobile}}</td>
+                    </tr> 
+                    {% endfor %}
+                </tbody>
+               
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Contact End -->
+
+        {% endblock %}
+    </div>
+  </body>
+</html>

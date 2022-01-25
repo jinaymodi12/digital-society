@@ -1,0 +1,86 @@
+{% load static %}
+{% block title %}
+<title>
+  EDIT PROFILE
+</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+<style>
+  body {
+    background: #BA68C8
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: #BA68C8;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+</style>
+<div class="container rounded bg-white mt-5">
+  <div class="row">
+      <div class="col-md-4 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">{{uid.name}}</span><span class="text-black-50">{{uid.email}}</span><span>United States</span></div>
+      </div>
+      <div class="col-md-8">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="d-flex flex-row align-items-center back" ></a><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                    <button type="submit"  class="btn bg-gradient-primary w-100 my-4 mb-2" >BACK</button>
+                  </div>
+                  <h6 class="text-right">Edit Profile</h6>
+                  {% if msg %}
+                  <p style="color: red;margin: 5px; padding: 5px ;">{{msg}}</p>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <form role="form" action="{% url 'profiles' %}" method="POST">
+                    {% csrf_token %}
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><input type="text" class="form-control" name="name"  value="{{uid.name}}"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-6"><input type="text" class="form-control" name="email"  value="{{uid.email}}"></div>
+                  <div class="col-md-6"><input type="text" class="form-control" name="mobile"  value="{{uid.mobile}}" placeholder="Phone number"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-6"><input type="text" class="form-control" name="address"  placeholder="address" value="{{uid.address}}"></div>
+                  <div class="col-md-6"><input type="text" class="form-control" name="password" value="{{uid.password}}" placeholder="Password"></div>
+              </div>
+              
+              <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+  

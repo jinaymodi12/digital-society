@@ -1,0 +1,118 @@
+{% extends 'headers.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    {% block title %}
+    <title>CleanMe - Cleaning Company Website Template</title>
+    {% endblock %}
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Cleaning Company Website Template" name="keywords" />
+    <meta content="Cleaning Company Website Template" name="description" />
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' }" rel="icon" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Libraries -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'lib/lightbox/css/lightbox.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Page Header Start -->
+      <div class="page-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2>RAJHANS HOMES </h2>
+            </div>
+            <div class="col-12">
+             
+              <a href="">Gallery</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page Header End -->
+
+      <!-- Contact Start -->
+      <div class="contact">
+        <div class="container">
+          <div class="section-header">
+            <p>EVENT DETAIL</p>
+          </div>
+          <div class="service">
+            <div class="container">
+                   
+                </div>
+                <div class="row">
+                  {% for one in q %}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-item">
+                            <img src="{{one.pics.url}}" alt="Service">
+                            <h3>{{one.name}}</h3>
+                            <h4>{{one.date}}</h4>
+                            <p>
+                              {{one.disc}}
+                            </p>
+                            <a class="btn" href="{{one.pics.url}}">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
+        
+        <!-- Feature Start -->
+        <div class="feature">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-md-7">
+                        <div class="row align-items-center feature-item">
+                            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Contact End -->
+
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

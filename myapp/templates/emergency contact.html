@@ -1,0 +1,133 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!--
+=========================================================
+* Material Dashboard 2 - v3.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+  {% block title %}
+  <title>
+   EMERGENCY CONTACT
+  </title>
+  {% endblock %}
+  
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'asset/scss/nucleo-svg.css' %}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
+</head>
+
+<body style="background-image: url(https://images.unsplash.com/photo-1604903256031-4328f723fa33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhY2UlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60
+); background-size: cover; background-attachment: fixed;">
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <!-- Navbar -->
+          
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"> </span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+           
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+              </div>
+            </div>
+            <div class="col-md-6 offset-md-3  flex-column ">
+              <div class="card card-plain">
+                <div class="card-header">
+                  <h4 class="font-weight-bolder">EMERGENCY CONTACT</h4>
+                  {% if msg %}
+                  <p style="color: red;margin: 5px; padding: 5px ;">{{msg}}</p>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <form role="form" action="{% url 'emergency contact' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="text" name="name"  id="name" class="form-control" placeholder="NAME" required >
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="mobile" name="mobile" id="mobile" class="form-control" placeholder="MOBILE" required>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <input type="text" name="occupation" id="address" class="form-control" placeholder="occupation" required>
+                    </div>
+                    
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{ % static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'assets/js/material-dashboard.min.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+{% endblock %}
