@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from random import *
@@ -9,7 +9,7 @@ from memberapp.models import Complain as co
 # Create your views here.
 def index(request):
     
-    return render (request,'index.html')
+    return render (request,'index.html',{'uid':uid})
 
 def signup(request):
     if request.method=='POST':
@@ -51,9 +51,11 @@ def notifications(request):
             date=request.POST['date']
             disc=request.POST['disc']
             Notifications.objects.create(name=name,date=date,disc=disc)
-            return render(request,'notifications.html')
+            ma=Notifications.objects.all()[::-1]
+            return render(request,'notifications.html',{'ma':ma,'uid':uid})
         else:
-            return render(request,'notifications.html')
+            ma=Notifications.objects.all()
+            return render(request,'notifications.html',{'ma':ma})
 
 
     except:    
@@ -64,7 +66,9 @@ def notifications(request):
     
 
 def dashboard(request):
-    return render (request,'index.html')
+    uid = user.objects.get(email=request.session['email'])
+
+    return render(request,'index.html',{'uid':uid})
 
 def otp(request):
     if request.method == 'POST':
@@ -93,6 +97,7 @@ def signin(request):
     if request.method=='POST':
         try:
             uid=user.objects.get(email=request.POST['email'])
+            
             if request.POST['password']== uid.password:
                 request.session['email']=request.POST['email']
                 print(request.session['email'])
@@ -144,25 +149,36 @@ def profile(request):
     else:
         return render(request,'profile.html',{'uid':uid})
 
-def emergencycontact(request):
-    uid=user.objects.get(email=request.session['email'])
+def emergency_contact(request):
+    # tid=Emergency_Contact.objects.get(id=pk)
     msg='YOUR DETAIL IS SAVE SUCCESSFULLY'
     if request.method =='POST':
         name =  request.POST['name']
         mobile = request.POST['mobile']
         occupation = request.POST['occupation']
-        cont = Emergency_Contact.objects.create(name=name,mobile=mobile,occupation=occupation)
-        xy=cont.save()   
-        return render(request,'emergency contact.html',{'msg':msg},{'uid':uid})
+        Emergency_Contact.objects.create(name=name,mobile=mobile,occupation=occupation)
+        many=Emergency_Contact.objects.all()
+
+        return render(request,'emergencycontact.html',{'msg':msg,'many':many})
     
     else:
-        return render(request,'emergency contact.html')
+        many=Emergency_Contact.objects.all()
+        return render(request,'emergencycontact.html',{'many':many}) 
 
 
 def com(request):
-  r=co.objects.all()
-  reversed(r)
-  return render(request,'com.html',{'r':r})
+  r=co.objects.all()[::-1]
+  select=False
+  if request.method=='POST':
+      select=request.POST['search']
+
+      if select=='pending':
+          select= False
+      else:
+          select=True
+
+  
+  return render(request,'com.html',{'r':r,'select':select})
 
 def eventgallery(request):
     msg='PICTURE UPLOAD SUCCESSFULLY'
@@ -191,18 +207,47 @@ def societymemberinfo(request):
         numberofmember=numberofmember,
         mobile=mobile,
         email=email)
-        
-        return render(request,'societymemberinfo.html',{'msg':msg})
+        man=Society_members_information_management.objects.all()[::-1]
+        return render(request,'societymemberinfo.html',{'msg':msg,'man':man})
     else:
-        return render(request,'societymemberinfo.html')
+        man=Society_members_information_management.objects.all()[::-1]
+        return render(request,'societymemberinfo.html',{'man':man})
 
-
+def deletes(request,pk ):
+    c=Society_members_information_management.objects.get(id=pk)
+    c.delete()
+    return redirect('societymemberinfo')
 
 
 def delete(request,pk ):
-    v=co.objects.get(id=pk)
+    v=Emergency_Contact.objects.get(id=pk)
     v.delete()
-    return render(request,'com.html',{'v':v})
+    return redirect('emergencycontact')
+
+def deletess(request,pk ):
+    a=Notifications.objects.get(id=pk)
+    a.delete()
+    return redirect('notifications')
+
+
+def edit(request,pk):
+    
+    
+    a=Society_members_information_management.objects.get(id=pk)
+    #uid = user.objects.get(email=request.session['email'])
+    msg='YOUR PROFILE UPDATED'
+    if request.method =='POST':
+        a.flatno = request.POST['flatno']
+        a.member = request.POST['member']
+        a.numberofmember = request.POST['numberofmember']
+        a.mobile=request.POST['mobile']
+        a.email=request.POST['email']
+        a.save()
+        return render(request,'edit.html',{'msg':msg,'a':a})
+    else:
+        return render(request,'edit.html',{'a':a})
+   
+
 
 
 

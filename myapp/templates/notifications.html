@@ -28,14 +28,14 @@
   <link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
 </head>
 
-<body style="background-image: url(https://images.unsplash.com/photo-1579547944212-c4f4961a8dd8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsdXIlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60
-); background-size: cover; background-attachment: fixed;">
+<body style="background-image: url(); background-size: cover; background-attachment: fixed;">
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12"> 
         <!-- Navbar -->
        
         <!-- End Navbar -->
+        
       </div>
     </div>
   </div>
@@ -48,12 +48,12 @@
               <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
               </div>
             </div>
-            <div class="col-md-6 offset-md-3  flex-column  ">
+            <div class="col-md-6 flex-column  ">
               <div class="card card-plain">
                 <div class="card-header">
                   <h4 class="font-weight-bolder">NOTIFICATION</h4>
                   {% if msg %}
-                  <p style="color: red;margin: 5px; padding: 5px ;">{{msg}}</p>
+                   <p style="color: red;margin: 5px; padding: 5px ;">{{msg}}</p>
                   {% endif %}
                 </div>
                 <div class="card-body.">
@@ -76,6 +76,15 @@
                       <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
                     </div>
                   </form>
+                  <table class="
+                  table table-striped" style="text-align: center;">
+                  
+                  <tr><th>NAME</th><th>DATE</th><th>DISC</th><th>Action</th></tr>
+                  {% for one in ma %}
+                  <tr><td>{{one.name}}</td><td>{{one.date}}</td><td>{{one.disc}}</td><td><a href="{% url 'deletess' one.id %}"><button class="btn btn-danger">DELETE</button></a></td></tr>
+                  {% endfor %}
+                  
+                  </table>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 </div>

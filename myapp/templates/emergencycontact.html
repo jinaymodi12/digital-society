@@ -43,8 +43,7 @@
   <link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
 </head>
 
-<body style="background-image: url(https://images.unsplash.com/photo-1604903256031-4328f723fa33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhY2UlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60
-); background-size: cover; background-attachment: fixed;">
+<body style="background-image: url(); background-size: cover; background-attachment: fixed;">
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
@@ -79,7 +78,7 @@
                   {% endif %}
                 </div>
                 <div class="card-body">
-                  <form role="form" action="{% url 'emergency contact' %}" method="POST">
+                  <form role="form" action="{% url 'emergencycontact' %}" method="POST">
                     {% csrf_token %}
                     <div class="input-group input-group-outline mb-3">
                       <input type="text" name="name"  id="name" class="form-control" placeholder="NAME" required >
@@ -94,8 +93,20 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
                     </div>
-                  </form>
+                  </form><br>
+                  <div>
+                    <table class="
+                    table table-striped" style="text-align: center;">
+                    
+                    <tr><th>NAME</th><th>MOBILE</th><th>Occupations</th><th>Action</th></tr>
+                    {% for one in many %}
+                    <tr><td>{{one.name}}</td><td>{{one.mobile}}</td><td>{{one.occupation}}</td><td><button class="btn btn-danger"><a href="{% url 'delete' one.id %}">DELETE</a></button></td></tr>
+                    {% endfor %}
+                    
+                    </table>
+                  </div>
                 </div>
+
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 </div>
               </div>

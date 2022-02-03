@@ -37,12 +37,11 @@ def complain(request):
         msg='ERROR'
         return render(request,'complain.html',{'msg':msg})
 def event(request):
-    q=m.Event_gallery.objects.all()
-     
+    q=m.Event_gallery.objects.all()[::-1]
     return render(request,'event.html',{'q':q})
 
 def note(request):
-    s=m.Notifications.objects.all()
+    s=m.Notifications.objects.all()[::-1]
     return render(request,'note.html',{'s':s})
 
 def logout(request):
@@ -151,12 +150,12 @@ def paymenthandler(request):
 
                     razorpay_client.payment.capture(payment_id, amount)
                     # render success page on successful caputre of payment
-					return render(request, 'paymentsuccess.html')
+				#	return render(request, 'paymentsuccess.html')
                 except:
  
                     # if there is an error while capturing payment.
                     return render(request, 'paymentfail.html')
-			else:
+			#else:
  
                 # if signature verification fails.
                 return render(request, 'paymentfail.html')
